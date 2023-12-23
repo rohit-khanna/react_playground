@@ -1,0 +1,38 @@
+.itemContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+
+  width: 60%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+  }
+
+.heading {
+    font-size: 2rem;
+    letter-spacing: 1px;;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.label {
+  font-weight: bold;
+margin-right: 1rem;
+}
+
+.content {
+    padding: 0.15rem 0;;
+}
