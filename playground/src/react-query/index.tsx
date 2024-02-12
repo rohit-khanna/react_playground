@@ -33,7 +33,7 @@ const QueryTest = (props: Props) => {
   const response = useToDo();
   console.log({ response });
 
-  return <div>index</div>;
+  return <pre style={{textAlign:"left", padding:"1rem"}}>{JSON.stringify(response,null,4)}</pre>;
 };
 
 export default QueryTest;

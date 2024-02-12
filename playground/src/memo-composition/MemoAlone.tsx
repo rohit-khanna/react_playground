@@ -1,7 +1,9 @@
 import React, { memo, useState } from "react";
-import { MemoedChild } from "./Child";
+import Child, { MemoedChild } from "./Child";
 
-type Props = {};
+type Props = {
+  useMemoChild?: boolean;
+};
 
 const MemoAlone = (props: Props) => {
   const [counter, setCounter] = useState(0);
@@ -16,7 +18,11 @@ const MemoAlone = (props: Props) => {
       </div>
 
       <div>
-        <MemoedChild color="blue" />
+        {props.useMemoChild ? (
+          <MemoedChild color="yellow" />
+        ) : (
+          <Child color="yellow" />
+        )}
       </div>
     </>
   );
