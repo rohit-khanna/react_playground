@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
 import styled from "styled-components";
 
@@ -7,23 +7,39 @@ type Props = {
 };
 
 const StyledDiv = styled.div`
-  width: 2rem;
-  height: 2rem;
   padding: 1rem;
+  font-size: small;
+  text-align: left;
 `;
 
-const Child: React.FC<Props> = ({ color }) => {
+
+export const Child: React.FC<Props> = ({ color }) => {
+  const getFormattedTime= new Date().toLocaleTimeString("en-US",{
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  });
+  const logsRef = React.useRef<string[]>([]);
   useEffect(() => {
-    console.log("Child useEffect on LOAD");
-  }, []);
+    logsRef.current = [...logsRef.current, `Child useEffect on LOAD- ${getFormattedTime}`];
+  }, [getFormattedTime]);
 
   useEffect(() => {
-    console.log("Child useEffect as color changed to:", color);
-  }, [color]);
+    logsRef.current = [
+      ...logsRef.current,
+      `Child useEffect as color changed to: ${color} - ${getFormattedTime}`,
+    ];
+  }, [color, getFormattedTime]);
 
-  console.log("Child re-renders");
-
-  return <StyledDiv style={{ backgroundColor: color }}>Child</StyledDiv>;
+  logsRef.current = [...logsRef.current, `Child re-renders- ${getFormattedTime}`];
+  return (
+    <StyledDiv style={{ backgroundColor: color }}>
+      {logsRef.current.map((log, index) => (
+        <p key={index}>{log}</p>
+      ))}
+    </StyledDiv>
+  );
 };
 
 export const MemoedChild = React.memo(
