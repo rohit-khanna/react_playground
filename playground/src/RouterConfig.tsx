@@ -1,19 +1,22 @@
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Link, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import MemoComposition, { MemoAlone } from "./memo-composition";
 import Child from "./memo-composition/Child";
-import QueryTest from "./react-query";
+import QueryTest from "./hooks";
 import React from "react";
+import { LoadMoreSample } from "./load-more";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 // Create a client
 const queryClient = new QueryClient();
 
 const Wrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
-    <div style={{ display: "flex" }}>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false}/>
       <Link to="/"> Back</Link>
       {children}
-    </div>
+    </QueryClientProvider>
   );
 };
 
@@ -53,9 +56,15 @@ export default createBrowserRouter([
     path: "/query-test",
     element: (
       <Wrapper>
-        <QueryClientProvider client={queryClient}>
-          <QueryTest />
-        </QueryClientProvider>
+        <QueryTest />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/load-more",
+    element: (
+      <Wrapper>
+        <LoadMoreSample />
       </Wrapper>
     ),
   },
