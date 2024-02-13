@@ -17,6 +17,9 @@ function App() {
         <li>
           <Link to="/query-test">Query Test</Link>
         </li>
+        <li>
+          <Link to="/load-more">Load More Sample</Link>
+        </li>
       </ul>
     </div>
   );
