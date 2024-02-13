@@ -45,6 +45,7 @@ export const LoadMoreSample = () => {
   }
   return data ? (
     <div className="postList">
+            <h2>Load More Sample- When "API" doesn't have "Pagination" Support</h2>
       <div>
         Posts Displayed : {totalNoOfPostsDisplayed}/{totalNoOfPosts}
       </div>
